@@ -7,16 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D699754BF178521A0CC4B89 /* HangulJamoExploder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34726A34818284142181E7 /* HangulJamoExploder.swift */; };
+		719A3CEDA617CE7B421CB3E9 /* LetterHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */; };
+		75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */; };
 		89C3C69C3010C0570072E066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C3C6983010C0570072E066 /* Assets.xcassets */; };
 		89C3C69D3010C0570072E066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C6993010C0570072E066 /* ContentView.swift */; };
 		89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C69A3010C0570072E066 /* KkodleApp.swift */; };
+		F47F7D4E783B3B20C10D80E6 /* WordComparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B63824BB331399522445215 /* WordComparer.swift */; };
+		7A912BC826E4411B81E4E3DD /* HangulAtomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */; };
+		CE64AA9AD5C540559A38EE67 /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulSyllable.swift; sourceTree = "<group>"; };
+		6B63824BB331399522445215 /* WordComparer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordComparer.swift; sourceTree = "<group>"; };
+		3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulAtomizer.swift; sourceTree = "<group>"; };
+		513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C3C6983010C0570072E066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89C3C6993010C0570072E066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89C3C69A3010C0570072E066 /* KkodleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KkodleApp.swift; sourceTree = "<group>"; };
+		8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHint.swift; sourceTree = "<group>"; };
+		EE34726A34818284142181E7 /* HangulJamoExploder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulJamoExploder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +42,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D888F215582A7B03DB2239B /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */,
+				EE34726A34818284142181E7 /* HangulJamoExploder.swift */,
+				8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */,
+				6B63824BB331399522445215 /* WordComparer.swift */,
+				3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */,
+				513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		89C3C67B3010B6BC0072E066 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +77,7 @@
 				89C3C6983010C0570072E066 /* Assets.xcassets */,
 				89C3C6993010C0570072E066 /* ContentView.swift */,
 				89C3C69A3010C0570072E066 /* KkodleApp.swift */,
+				6D888F215582A7B03DB2239B /* Game */,
 			);
 			path = Kkodle;
 			sourceTree = "<group>";
@@ -130,6 +156,12 @@
 			files = (
 				89C3C69D3010C0570072E066 /* ContentView.swift in Sources */,
 				89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */,
+				75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */,
+				4D699754BF178521A0CC4B89 /* HangulJamoExploder.swift in Sources */,
+				719A3CEDA617CE7B421CB3E9 /* LetterHint.swift in Sources */,
+				F47F7D4E783B3B20C10D80E6 /* WordComparer.swift in Sources */,
+				7A912BC826E4411B81E4E3DD /* HangulAtomizer.swift in Sources */,
+				CE64AA9AD5C540559A38EE67 /* HangulComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +294,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4Y3BP25BV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -293,6 +326,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4Y3BP25BV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
