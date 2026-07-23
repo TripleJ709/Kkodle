@@ -8,16 +8,15 @@
 import Foundation
 
 enum WordComparer {
-    static let atomCount = 5
-
     enum ComparisonError: Error {
         case invalidLength
     }
 
     static func compare(guess: [Character], answer: [Character]) throws -> [LetterHint] {
-        guard guess.count == atomCount, answer.count == atomCount else {
+        guard guess.count == answer.count else {
             throw ComparisonError.invalidLength
         }
+        let atomCount = answer.count
 
         var hints = [LetterHint](repeating: .absent, count: atomCount)
         var isExactMatch = [Bool](repeating: false, count: atomCount)
