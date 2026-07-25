@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var viewModel = GameViewModel(answer: "우산", validWords: ["우산", "가방"])
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            GameGridView(viewModel: viewModel)
+            Spacer()
+            GameKeyboardView(viewModel: viewModel)
         }
-        .padding()
     }
 }
 
