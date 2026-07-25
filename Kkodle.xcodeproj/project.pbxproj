@@ -20,6 +20,7 @@
 		EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9687487A8FB4885935FF914 /* GameGridView.swift */; };
 		AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */; };
 		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
+		FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */; };
 		648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 768FDE2AFCDD4E73A52CBD72 /* answers_5.json */; };
 		914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47DC8736F5D740FBA605E04C /* validGuesses_5.json */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		C9687487A8FB4885935FF914 /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeyboardView.swift; sourceTree = "<group>"; };
 		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
+		1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		768FDE2AFCDD4E73A52CBD72 /* answers_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = answers_5.json; sourceTree = "<group>"; };
 		47DC8736F5D740FBA605E04C /* validGuesses_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = validGuesses_5.json; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 				8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */,
 				C9687487A8FB4885935FF914 /* GameGridView.swift */,
 				5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */,
+				1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */,
 				AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */,
 				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
+				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

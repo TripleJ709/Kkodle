@@ -39,10 +39,13 @@ final class GameViewModel {
     private(set) var submittedGuesses: [GuessResult] = []
     private(set) var status: GameStatus = .inProgress
 
+    let answerWord: String
+
     private let answerAtoms: [Character]
     private let validWords: Set<String>
 
     init(answer: String, validWords: Set<String>) {
+        self.answerWord = answer
         self.answerAtoms = HangulAtomizer.atomize(answer) ?? []
         self.validWords = validWords
     }

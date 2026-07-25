@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var viewModel: GameViewModel
+    @State private var showResult = true
 
     init() {
         let repository = WordRepository(atomCount: 5)
@@ -17,10 +18,18 @@ struct ContentView: View {
     }
 
     var body: some View {
-        VStack {
-            GameGridView(viewModel: viewModel)
-            Spacer()
-            GameKeyboardView(viewModel: viewModel)
+        ZStack {
+            VStack {
+                GameGridView(viewModel: viewModel)
+                Spacer()
+                GameKeyboardView(viewModel: viewModel)
+            }
+
+            if viewModel.status != .inProgress && showResult {
+                GameResultOverlay(status: viewModel.status, answerWord: viewModel.answerWord) {
+                    showResult = false
+                }
+            }
         }
     }
 }
