@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var viewModel = GameViewModel(answer: "우산", validWords: ["우산", "가방"])
+    @State private var viewModel: GameViewModel
+
+    init() {
+        let repository = WordRepository(atomCount: 5)
+        let answer = repository.todayAnswer() ?? "우산"
+        _viewModel = State(initialValue: GameViewModel(answer: answer, validWords: repository.validGuesses))
+    }
 
     var body: some View {
         VStack {

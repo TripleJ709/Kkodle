@@ -19,6 +19,9 @@
 		174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */; };
 		EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9687487A8FB4885935FF914 /* GameGridView.swift */; };
 		AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */; };
+		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
+		648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 768FDE2AFCDD4E73A52CBD72 /* answers_5.json */; };
+		914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47DC8736F5D740FBA605E04C /* validGuesses_5.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		C9687487A8FB4885935FF914 /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeyboardView.swift; sourceTree = "<group>"; };
+		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
+		768FDE2AFCDD4E73A52CBD72 /* answers_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = answers_5.json; sourceTree = "<group>"; };
+		47DC8736F5D740FBA605E04C /* validGuesses_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = validGuesses_5.json; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C3C6983010C0570072E066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89C3C6993010C0570072E066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +63,7 @@
 				6B63824BB331399522445215 /* WordComparer.swift */,
 				3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */,
 				513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */,
+				9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -77,6 +84,15 @@
 				28E6397F8BA046DAAF48CDF5 /* Game */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		67650D101C864547AC30E20F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				768FDE2AFCDD4E73A52CBD72 /* answers_5.json */,
+				47DC8736F5D740FBA605E04C /* validGuesses_5.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		89C3C67B3010B6BC0072E066 = {
@@ -103,6 +119,7 @@
 				89C3C69A3010C0570072E066 /* KkodleApp.swift */,
 				6D888F215582A7B03DB2239B /* Core */,
 				B127E47838CA41AAB9537C54 /* Features */,
+				67650D101C864547AC30E20F /* Resources */,
 			);
 			path = Kkodle;
 			sourceTree = "<group>";
@@ -169,6 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C3C69C3010C0570072E066 /* Assets.xcassets in Resources */,
+				648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */,
+				914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +209,7 @@
 				174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */,
 				EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */,
 				AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */,
+				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
