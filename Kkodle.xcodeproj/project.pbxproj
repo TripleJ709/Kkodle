@@ -7,16 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D699754BF178521A0CC4B89 /* HangulJamoExploder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34726A34818284142181E7 /* HangulJamoExploder.swift */; };
+		719A3CEDA617CE7B421CB3E9 /* LetterHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */; };
+		75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */; };
 		89C3C69C3010C0570072E066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C3C6983010C0570072E066 /* Assets.xcassets */; };
 		89C3C69D3010C0570072E066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C6993010C0570072E066 /* ContentView.swift */; };
 		89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C69A3010C0570072E066 /* KkodleApp.swift */; };
+		F47F7D4E783B3B20C10D80E6 /* WordComparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B63824BB331399522445215 /* WordComparer.swift */; };
+		7A912BC826E4411B81E4E3DD /* HangulAtomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */; };
+		CE64AA9AD5C540559A38EE67 /* HangulComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */; };
+		174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */; };
+		EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9687487A8FB4885935FF914 /* GameGridView.swift */; };
+		AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */; };
+		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
+		FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */; };
+		04415D201B434796858A450A /* HeartsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */; };
+		76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */; };
+		648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 768FDE2AFCDD4E73A52CBD72 /* answers_5.json */; };
+		914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47DC8736F5D740FBA605E04C /* validGuesses_5.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulSyllable.swift; sourceTree = "<group>"; };
+		6B63824BB331399522445215 /* WordComparer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordComparer.swift; sourceTree = "<group>"; };
+		3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulAtomizer.swift; sourceTree = "<group>"; };
+		513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulComposer.swift; sourceTree = "<group>"; };
+		8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		C9687487A8FB4885935FF914 /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
+		5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeyboardView.swift; sourceTree = "<group>"; };
+		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
+		1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
+		A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsStore.swift; sourceTree = "<group>"; };
+		F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsIndicatorView.swift; sourceTree = "<group>"; };
+		768FDE2AFCDD4E73A52CBD72 /* answers_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = answers_5.json; sourceTree = "<group>"; };
+		47DC8736F5D740FBA605E04C /* validGuesses_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = validGuesses_5.json; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C3C6983010C0570072E066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89C3C6993010C0570072E066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89C3C69A3010C0570072E066 /* KkodleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KkodleApp.swift; sourceTree = "<group>"; };
+		8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHint.swift; sourceTree = "<group>"; };
+		EE34726A34818284142181E7 /* HangulJamoExploder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulJamoExploder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +60,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D888F215582A7B03DB2239B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */,
+				EE34726A34818284142181E7 /* HangulJamoExploder.swift */,
+				8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */,
+				6B63824BB331399522445215 /* WordComparer.swift */,
+				3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */,
+				513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */,
+				9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */,
+				A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		28E6397F8BA046DAAF48CDF5 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */,
+				C9687487A8FB4885935FF914 /* GameGridView.swift */,
+				5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */,
+				1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */,
+				F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		B127E47838CA41AAB9537C54 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				28E6397F8BA046DAAF48CDF5 /* Game */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		67650D101C864547AC30E20F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				768FDE2AFCDD4E73A52CBD72 /* answers_5.json */,
+				47DC8736F5D740FBA605E04C /* validGuesses_5.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		89C3C67B3010B6BC0072E066 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +126,9 @@
 				89C3C6983010C0570072E066 /* Assets.xcassets */,
 				89C3C6993010C0570072E066 /* ContentView.swift */,
 				89C3C69A3010C0570072E066 /* KkodleApp.swift */,
+				6D888F215582A7B03DB2239B /* Core */,
+				B127E47838CA41AAB9537C54 /* Features */,
+				67650D101C864547AC30E20F /* Resources */,
 			);
 			path = Kkodle;
 			sourceTree = "<group>";
@@ -118,6 +195,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C3C69C3010C0570072E066 /* Assets.xcassets in Resources */,
+				648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */,
+				914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +209,19 @@
 			files = (
 				89C3C69D3010C0570072E066 /* ContentView.swift in Sources */,
 				89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */,
+				75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */,
+				4D699754BF178521A0CC4B89 /* HangulJamoExploder.swift in Sources */,
+				719A3CEDA617CE7B421CB3E9 /* LetterHint.swift in Sources */,
+				F47F7D4E783B3B20C10D80E6 /* WordComparer.swift in Sources */,
+				7A912BC826E4411B81E4E3DD /* HangulAtomizer.swift in Sources */,
+				CE64AA9AD5C540559A38EE67 /* HangulComposer.swift in Sources */,
+				174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */,
+				EEACBEAF519245B49CC448CE /* GameGridView.swift in Sources */,
+				AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */,
+				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
+				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
+				04415D201B434796858A450A /* HeartsStore.swift in Sources */,
+				76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +354,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4Y3BP25BV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -293,6 +386,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K4Y3BP25BV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
