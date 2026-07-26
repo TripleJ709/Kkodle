@@ -11,7 +11,8 @@
 		719A3CEDA617CE7B421CB3E9 /* LetterHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */; };
 		75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */; };
 		89C3C69C3010C0570072E066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C3C6983010C0570072E066 /* Assets.xcassets */; };
-		89C3C69D3010C0570072E066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C6993010C0570072E066 /* ContentView.swift */; };
+		AF33DCA08C0B45B6905EB174 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3E5E791834C4DBBDAB406 /* HomeView.swift */; };
+		F2D70F5526024CBF96367B10 /* DailyWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94EF25DB044EEBD3DFB2F /* DailyWordView.swift */; };
 		89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C69A3010C0570072E066 /* KkodleApp.swift */; };
 		F47F7D4E783B3B20C10D80E6 /* WordComparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B63824BB331399522445215 /* WordComparer.swift */; };
 		7A912BC826E4411B81E4E3DD /* HangulAtomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */; };
@@ -43,7 +44,8 @@
 		47DC8736F5D740FBA605E04C /* validGuesses_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = validGuesses_5.json; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C3C6983010C0570072E066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		89C3C6993010C0570072E066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3BE3E5E791834C4DBBDAB406 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		03E94EF25DB044EEBD3DFB2F /* DailyWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWordView.swift; sourceTree = "<group>"; };
 		89C3C69A3010C0570072E066 /* KkodleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KkodleApp.swift; sourceTree = "<group>"; };
 		8CC7A4C4C5BBD4A8E6E13331 /* LetterHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHint.swift; sourceTree = "<group>"; };
 		EE34726A34818284142181E7 /* HangulJamoExploder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulJamoExploder.swift; sourceTree = "<group>"; };
@@ -87,10 +89,28 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		CEF56320A96B4F1CBF5E2261 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3BE3E5E791834C4DBBDAB406 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B545BD264B2540959259C771 /* DailyWord */ = {
+			isa = PBXGroup;
+			children = (
+				03E94EF25DB044EEBD3DFB2F /* DailyWordView.swift */,
+			);
+			path = DailyWord;
+			sourceTree = "<group>";
+		};
 		B127E47838CA41AAB9537C54 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				28E6397F8BA046DAAF48CDF5 /* Game */,
+				CEF56320A96B4F1CBF5E2261 /* Home */,
+				B545BD264B2540959259C771 /* DailyWord */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -124,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				89C3C6983010C0570072E066 /* Assets.xcassets */,
-				89C3C6993010C0570072E066 /* ContentView.swift */,
 				89C3C69A3010C0570072E066 /* KkodleApp.swift */,
 				6D888F215582A7B03DB2239B /* Core */,
 				B127E47838CA41AAB9537C54 /* Features */,
@@ -207,7 +226,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89C3C69D3010C0570072E066 /* ContentView.swift in Sources */,
+				AF33DCA08C0B45B6905EB174 /* HomeView.swift in Sources */,
+				F2D70F5526024CBF96367B10 /* DailyWordView.swift in Sources */,
 				89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */,
 				75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */,
 				4D699754BF178521A0CC4B89 /* HangulJamoExploder.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DailyWordView.swift
 //  Kkodle
 //
 //  Created by 장주진 on 7/22/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DailyWordView: View {
     @State private var viewModel: GameViewModel
     @State private var showResult = true
 
@@ -31,9 +31,11 @@ struct ContentView: View {
                 }
             }
         }
+        .navigationTitle("오늘의 단어")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    ContentView()
+    DailyWordView()
 }
