@@ -33,7 +33,7 @@ struct GridCell: Identifiable {
 
 @Observable
 final class GameViewModel {
-    let maxAttempts = 6
+    private(set) var maxAttempts: Int
 
     private(set) var currentGuess: [Character] = []
     private(set) var submittedGuesses: [GuessResult] = []
@@ -44,10 +44,11 @@ final class GameViewModel {
     private let answerAtoms: [Character]
     private let validWords: Set<String>
 
-    init(answer: String, validWords: Set<String>) {
+    init(answer: String, validWords: Set<String>, maxAttempts: Int = 6) {
         self.answerWord = answer
         self.answerAtoms = HangulAtomizer.atomize(answer) ?? []
         self.validWords = validWords
+        self.maxAttempts = maxAttempts
     }
 
     var atomCount: Int { answerAtoms.count }
@@ -90,6 +91,12 @@ final class GameViewModel {
     func deleteLastAtom() {
         guard status == .inProgress, !currentGuess.isEmpty else { return }
         currentGuess.removeLast()
+    }
+
+    func extendAttempt() {
+        guard status == .lost else { return }
+        maxAttempts += 1
+        status = .inProgress
     }
 
     func submitGuess() throws {

@@ -16,11 +16,24 @@ struct WordRepository {
         validGuesses = Self.loadWordSet(fileName: "validGuesses_\(atomCount)", bundle: bundle)
     }
 
+    init(answers: Set<String>, validGuesses: Set<String>) {
+        self.answers = answers
+        self.validGuesses = validGuesses
+    }
+
     func todayAnswer(referenceDate: Date = Date()) -> String? {
         let sorted = answers.sorted()
         guard !sorted.isEmpty else { return nil }
         let daysSinceEpoch = Int(referenceDate.timeIntervalSince1970 / 86400)
         return sorted[daysSinceEpoch % sorted.count]
+    }
+
+    func randomAnswer(excluding previous: String? = nil) -> String? {
+        var pool = answers
+        if let previous, pool.count > 1 {
+            pool.remove(previous)
+        }
+        return pool.randomElement()
     }
 
     private static func loadWordSet(fileName: String, bundle: Bundle) -> Set<String> {
