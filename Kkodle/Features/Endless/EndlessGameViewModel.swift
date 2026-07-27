@@ -19,6 +19,8 @@ final class EndlessGameViewModel {
 
     private(set) var currentRound: GameViewModel
     private(set) var score = 0
+    private(set) var wordsSolved = 0
+    private(set) var lastRoundPoints = 0
     private(set) var runStatus: EndlessRunStatus = .playing
 
     private let repository: WordRepository
@@ -42,8 +44,10 @@ final class EndlessGameViewModel {
     func handleRoundChange() {
         switch currentRound.status {
         case .won:
-            score += 1
-            startNextRound()
+            let points = pointsForCurrentRound()
+            lastRoundPoints = points
+            score += points
+            wordsSolved += 1
         case .lost:
             if !heartsStore.hasHearts {
                 runStatus = .ended
@@ -51,6 +55,11 @@ final class EndlessGameViewModel {
         case .inProgress:
             break
         }
+    }
+
+    func advanceToNextRound() {
+        guard currentRound.status == .won else { return }
+        startNextRound()
     }
 
     func useHeartToContinue() {
@@ -62,6 +71,10 @@ final class EndlessGameViewModel {
     func giveUp() {
         guard currentRound.status == .lost else { return }
         runStatus = .ended
+    }
+
+    private func pointsForCurrentRound() -> Int {
+        max(1, 6 - currentRound.attemptsUsed)
     }
 
     private func startNextRound() {

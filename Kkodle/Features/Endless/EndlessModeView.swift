@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EndlessModeView: View {
     @State private var viewModel: EndlessGameViewModel
+    @Environment(\.dismiss) private var dismiss
 
     init(heartsStore: HeartsStore) {
         let repository = WordRepository(atomCount: 5)
@@ -32,6 +33,12 @@ struct EndlessModeView: View {
                 GameKeyboardView(viewModel: viewModel.currentRound)
             }
 
+            if viewModel.currentRound.status == .won {
+                WinCelebrationOverlay(points: viewModel.lastRoundPoints) {
+                    viewModel.advanceToNextRound()
+                }
+            }
+
             if viewModel.currentRound.status == .lost && viewModel.runStatus == .playing {
                 RoundLossPromptOverlay(
                     answerWord: viewModel.currentRound.answerWord,
@@ -42,7 +49,12 @@ struct EndlessModeView: View {
             }
 
             if viewModel.runStatus == .ended {
-                EndlessResultOverlay(score: viewModel.score, answerWord: viewModel.currentRound.answerWord)
+                EndlessResultOverlay(
+                    score: viewModel.score,
+                    wordsSolved: viewModel.wordsSolved,
+                    answerWord: viewModel.currentRound.answerWord,
+                    onBack: { dismiss() }
+                )
             }
         }
         .onChange(of: viewModel.currentRound.status) { _, _ in
@@ -50,6 +62,33 @@ struct EndlessModeView: View {
         }
         .navigationTitle("무한 모드")
         .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+private struct WinCelebrationOverlay: View {
+    let points: Int
+    let onContinue: () -> Void
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4).ignoresSafeArea()
+            VStack(spacing: 8) {
+                Text("정답이에요! 🎉")
+                    .font(.title2.bold())
+                Text("+\(points)점")
+                    .font(.title.bold())
+                    .foregroundStyle(.green)
+            }
+            .padding(28)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .padding(60)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture(perform: onContinue)
+        .task {
+            try? await Task.sleep(for: .seconds(1.2))
+            onContinue()
+        }
     }
 }
 
@@ -100,7 +139,9 @@ private struct RoundLossPromptOverlay: View {
 
 private struct EndlessResultOverlay: View {
     let score: Int
+    let wordsSolved: Int
     let answerWord: String
+    let onBack: () -> Void
 
     var body: some View {
         ZStack {
@@ -108,12 +149,23 @@ private struct EndlessResultOverlay: View {
             VStack(spacing: 12) {
                 Text("게임 종료")
                     .font(.title2.bold())
-                Text("이번 기록: \(score)개")
+                Text("총점 \(score)점")
                     .font(.title3.bold())
                     .foregroundStyle(.orange)
+                Text("맞춘 단어 \(wordsSolved)개")
+                    .font(.body)
+                    .foregroundStyle(.secondary)
                 Text("정답은 \"\(answerWord)\" 였어요")
                     .font(.body)
                     .foregroundStyle(.secondary)
+
+                Button("돌아가기", action: onBack)
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .background(Color.accentColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding(.top, 8)
             }
             .padding(28)
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
