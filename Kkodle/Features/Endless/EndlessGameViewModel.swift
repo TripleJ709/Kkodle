@@ -21,21 +21,25 @@ final class EndlessGameViewModel {
     private(set) var score = 0
     private(set) var wordsSolved = 0
     private(set) var lastRoundPoints = 0
+    private(set) var isNewBest = false
     private(set) var runStatus: EndlessRunStatus = .playing
 
     private let repository: WordRepository
     private let heartsStore: HeartsStore
+    private let highScoreStore: EndlessHighScoreStore
     private var previousAnswer: String?
 
-    init(repository: WordRepository, heartsStore: HeartsStore) {
+    init(repository: WordRepository, heartsStore: HeartsStore, highScoreStore: EndlessHighScoreStore) {
         self.repository = repository
         self.heartsStore = heartsStore
+        self.highScoreStore = highScoreStore
         let answer = repository.randomAnswer() ?? "우산"
         self.previousAnswer = answer
         self.currentRound = GameViewModel(answer: answer, validWords: repository.validGuesses, maxAttempts: Self.baseAttempts)
     }
 
     var hearts: Int { heartsStore.hearts }
+    var bestScore: Int { highScoreStore.bestScore }
 
     var canUseHeartToContinue: Bool {
         currentRound.status == .lost && heartsStore.hasHearts
@@ -50,7 +54,7 @@ final class EndlessGameViewModel {
             wordsSolved += 1
         case .lost:
             if !heartsStore.hasHearts {
-                runStatus = .ended
+                endRun()
             }
         case .inProgress:
             break
@@ -70,7 +74,12 @@ final class EndlessGameViewModel {
 
     func giveUp() {
         guard currentRound.status == .lost else { return }
+        endRun()
+    }
+
+    private func endRun() {
         runStatus = .ended
+        isNewBest = highScoreStore.recordScore(score)
     }
 
     private func pointsForCurrentRound() -> Int {

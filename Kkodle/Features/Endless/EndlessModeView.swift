@@ -13,7 +13,11 @@ struct EndlessModeView: View {
 
     init(heartsStore: HeartsStore) {
         let repository = WordRepository(atomCount: 5)
-        _viewModel = State(initialValue: EndlessGameViewModel(repository: repository, heartsStore: heartsStore))
+        _viewModel = State(initialValue: EndlessGameViewModel(
+            repository: repository,
+            heartsStore: heartsStore,
+            highScoreStore: EndlessHighScoreStore()
+        ))
     }
 
     var body: some View {
@@ -51,6 +55,8 @@ struct EndlessModeView: View {
             if viewModel.runStatus == .ended {
                 EndlessResultOverlay(
                     score: viewModel.score,
+                    bestScore: viewModel.bestScore,
+                    isNewBest: viewModel.isNewBest,
                     wordsSolved: viewModel.wordsSolved,
                     answerWord: viewModel.currentRound.answerWord,
                     onBack: { dismiss() }
@@ -139,6 +145,8 @@ private struct RoundLossPromptOverlay: View {
 
 private struct EndlessResultOverlay: View {
     let score: Int
+    let bestScore: Int
+    let isNewBest: Bool
     let wordsSolved: Int
     let answerWord: String
     let onBack: () -> Void
@@ -152,6 +160,15 @@ private struct EndlessResultOverlay: View {
                 Text("총점 \(score)점")
                     .font(.title3.bold())
                     .foregroundStyle(.orange)
+                if isNewBest {
+                    Text("🎉 신기록!")
+                        .font(.headline)
+                        .foregroundStyle(.pink)
+                } else {
+                    Text("최고 기록 \(bestScore)점")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                }
                 Text("맞춘 단어 \(wordsSolved)개")
                     .font(.body)
                     .foregroundStyle(.secondary)
