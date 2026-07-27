@@ -23,7 +23,10 @@
 		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
 		FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */; };
 		04415D201B434796858A450A /* HeartsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */; };
+		F90FD21C25DD4244902236B5 /* EndlessHighScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */; };
 		76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */; };
+		E15CFA82C6D7493F9E924FB6 /* EndlessGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A62FCBBCA4FA1B8853D7D /* EndlessGameViewModel.swift */; };
+		B870CEBFCAB14979A884BC79 /* EndlessModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */; };
 		648B046F17924B6F8CCB5A4E /* answers_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 768FDE2AFCDD4E73A52CBD72 /* answers_5.json */; };
 		914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47DC8736F5D740FBA605E04C /* validGuesses_5.json */; };
 /* End PBXBuildFile section */
@@ -39,7 +42,10 @@
 		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsStore.swift; sourceTree = "<group>"; };
+		0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessHighScoreStore.swift; sourceTree = "<group>"; };
 		F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsIndicatorView.swift; sourceTree = "<group>"; };
+		3D3A62FCBBCA4FA1B8853D7D /* EndlessGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessGameViewModel.swift; sourceTree = "<group>"; };
+		C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessModeView.swift; sourceTree = "<group>"; };
 		768FDE2AFCDD4E73A52CBD72 /* answers_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = answers_5.json; sourceTree = "<group>"; };
 		47DC8736F5D740FBA605E04C /* validGuesses_5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = validGuesses_5.json; sourceTree = "<group>"; };
 		89C3C6843010B6BC0072E066 /* Kkodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kkodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +79,7 @@
 				513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */,
 				9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */,
 				A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */,
+				0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -105,12 +112,22 @@
 			path = DailyWord;
 			sourceTree = "<group>";
 		};
+		6D6A982ABEAD44C791FCE553 /* Endless */ = {
+			isa = PBXGroup;
+			children = (
+				3D3A62FCBBCA4FA1B8853D7D /* EndlessGameViewModel.swift */,
+				C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */,
+			);
+			path = Endless;
+			sourceTree = "<group>";
+		};
 		B127E47838CA41AAB9537C54 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				28E6397F8BA046DAAF48CDF5 /* Game */,
 				CEF56320A96B4F1CBF5E2261 /* Home */,
 				B545BD264B2540959259C771 /* DailyWord */,
+				6D6A982ABEAD44C791FCE553 /* Endless */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -241,7 +258,10 @@
 				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
 				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
 				04415D201B434796858A450A /* HeartsStore.swift in Sources */,
+				F90FD21C25DD4244902236B5 /* EndlessHighScoreStore.swift in Sources */,
 				76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */,
+				E15CFA82C6D7493F9E924FB6 /* EndlessGameViewModel.swift in Sources */,
+				B870CEBFCAB14979A884BC79 /* EndlessModeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

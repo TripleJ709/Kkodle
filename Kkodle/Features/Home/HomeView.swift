@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var heartsStore = HeartsStore()
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
                 Text("꼬들꼬들")
                     .font(.largeTitle.bold())
                     .padding(.top, 40)
+
+                HeartsIndicatorView(hearts: heartsStore.hearts)
 
                 Spacer()
 
@@ -24,7 +28,13 @@ struct HomeView: View {
                 }
                 .buttonStyle(.plain)
 
-                ModeCard(title: "무한 모드", subtitle: "하트가 다 떨어질 때까지 계속 도전", isEnabled: false)
+                NavigationLink {
+                    EndlessModeView(heartsStore: heartsStore)
+                } label: {
+                    ModeCard(title: "무한 모드", subtitle: "한 단어씩, 몇 개까지 맞히는지 도전해보세요", isEnabled: true)
+                }
+                .buttonStyle(.plain)
+
                 ModeCard(title: "시간 제한 모드", subtitle: "3분 안에 최대한 많이 맞춰보세요", isEnabled: false)
                 ModeCard(title: "실시간 대결", subtitle: "다른 유저와 실시간으로 대결", isEnabled: false)
 

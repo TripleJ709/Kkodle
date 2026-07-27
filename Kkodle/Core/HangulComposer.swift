@@ -72,7 +72,7 @@ enum HangulComposer {
                     jungseong = atom
                 } else if jungseong == nil {
                     jungseong = atom
-                } else if let merged = compoundVowelPairs[jungseong!]?[atom] {
+                } else if jongseong == nil, let merged = compoundVowelPairs[jungseong!]?[atom] {
                     jungseong = merged
                 } else if let carried = jongseong {
                     if let (kept, given) = jongseongSplit[carried] {
