@@ -58,7 +58,11 @@ final class GameViewModel {
         var result: [Character: LetterHint] = [:]
         for guess in submittedGuesses {
             for (atom, hint) in zip(guess.atoms, guess.hints) {
-                if rank(hint) > rank(result[atom] ?? .absent) {
+                if let existing = result[atom] {
+                    if rank(hint) > rank(existing) {
+                        result[atom] = hint
+                    }
+                } else {
                     result[atom] = hint
                 }
             }

@@ -83,6 +83,10 @@ struct GameKeyboardView: View {
         .buttonStyle(.plain)
     }
 
+    private var isGuessComplete: Bool {
+        viewModel.currentGuess.count == viewModel.atomCount
+    }
+
     private var submitButton: some View {
         Button(action: submit) {
             Text("제출")
@@ -91,15 +95,21 @@ struct GameKeyboardView: View {
                 .frame(maxWidth: .infinity, minHeight: 50)
                 .background(
                     LinearGradient(
-                        colors: [Color(red: 1.0, green: 0.42, blue: 0.42), Color(red: 0.83, green: 0.18, blue: 0.42)],
+                        colors: isGuessComplete
+                            ? [Color(red: 1.0, green: 0.42, blue: 0.42), Color(red: 0.83, green: 0.18, blue: 0.42)]
+                            : [Color.gray.opacity(0.4), Color.gray.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
                 .clipShape(Capsule())
-                .shadow(color: Color(red: 0.83, green: 0.18, blue: 0.42).opacity(0.4), radius: 8, x: 0, y: 4)
+                .shadow(
+                    color: isGuessComplete ? Color(red: 0.83, green: 0.18, blue: 0.42).opacity(0.4) : .clear,
+                    radius: 8, x: 0, y: 4
+                )
         }
         .buttonStyle(.plain)
+        .disabled(!isGuessComplete)
         .padding(.top, 8)
     }
 
@@ -119,7 +129,7 @@ struct GameKeyboardView: View {
         switch viewModel.bestHints[atom] {
         case .correct: .green
         case .present: .yellow
-        case .absent: .gray.opacity(0.6)
+        case .absent: Color(white: 0.35)
         case nil: Color(white: 0.9)
         }
     }

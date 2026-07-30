@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var heartsStore = HeartsStore()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         NavigationStack {
@@ -17,12 +18,16 @@ struct HomeView: View {
                     .font(.largeTitle.bold())
                     .padding(.top, 40)
 
-                HeartsIndicatorView(hearts: heartsStore.hearts)
+                HeartsIndicatorView(heartsStore: heartsStore)
+
+                if heartsStore.pendingCoupons > 0 {
+                    CouponBanner(heartsStore: heartsStore)
+                }
 
                 Spacer()
 
                 NavigationLink {
-                    DailyWordView()
+                    DailyWordView(heartsStore: heartsStore)
                 } label: {
                     ModeCard(title: "오늘의 단어", subtitle: "하루에 한 번, 오늘의 단어를 맞춰보세요", isEnabled: true)
                 }
@@ -41,6 +46,41 @@ struct HomeView: View {
                 Spacer()
             }
             .padding()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                heartsStore.refresh()
+            }
+        }
+    }
+}
+
+private struct CouponBanner: View {
+    let heartsStore: HeartsStore
+    @State private var showConfirmation = false
+
+    var body: some View {
+        HStack {
+            Text("하트 추가권 \(heartsStore.pendingCoupons)개 보유 중")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+
+            Button("쿠폰 사용") {
+                showConfirmation = true
+            }
+            .font(.caption.bold())
+            .disabled(heartsStore.hearts >= HeartsStore.maxHearts)
+        }
+        .padding(.horizontal)
+        .alert("쿠폰을 사용할까요?", isPresented: $showConfirmation) {
+            Button("취소", role: .cancel) {}
+            Button("사용") {
+                heartsStore.redeemCoupon()
+            }
+        } message: {
+            Text("쿠폰 1개를 써서 하트를 채웁니다.")
         }
     }
 }
