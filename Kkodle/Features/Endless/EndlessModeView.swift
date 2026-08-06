@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct EndlessModeView: View {
+    let heartsStore: HeartsStore
     @State private var viewModel: EndlessGameViewModel
     @Environment(\.dismiss) private var dismiss
 
     init(heartsStore: HeartsStore) {
+        self.heartsStore = heartsStore
         let repository = WordRepository(atomCount: 5)
         _viewModel = State(initialValue: EndlessGameViewModel(
             repository: repository,
@@ -24,7 +26,7 @@ struct EndlessModeView: View {
         ZStack {
             VStack {
                 HStack {
-                    HeartsIndicatorView(hearts: viewModel.hearts)
+                    HeartsIndicatorView(heartsStore: heartsStore)
                     Spacer()
                     Text("점수 \(viewModel.score)")
                         .font(.headline)

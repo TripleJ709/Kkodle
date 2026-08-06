@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct DailyWordView: View {
+    let heartsStore: HeartsStore
     @State private var viewModel: GameViewModel
     @State private var showResult = true
 
-    init() {
+    init(heartsStore: HeartsStore) {
+        self.heartsStore = heartsStore
         let repository = WordRepository(atomCount: 5)
         let answer = repository.todayAnswer() ?? "우산"
         _viewModel = State(initialValue: GameViewModel(answer: answer, validWords: repository.validGuesses))
@@ -31,11 +33,16 @@ struct DailyWordView: View {
                 }
             }
         }
+        .onChange(of: viewModel.status) { _, newStatus in
+            if newStatus == .won {
+                heartsStore.grantCoupon()
+            }
+        }
         .navigationTitle("오늘의 단어")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    DailyWordView()
+    DailyWordView(heartsStore: HeartsStore(defaults: UserDefaults(suiteName: "preview.dailyword")!))
 }
