@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var heartsStore = HeartsStore()
     @Environment(\.scenePhase) private var scenePhase
+    @State private var endlessModeSession: EndlessModeSession?
 
     var body: some View {
         NavigationStack {
@@ -33,8 +34,8 @@ struct HomeView: View {
                 }
                 .buttonStyle(.plain)
 
-                NavigationLink {
-                    EndlessModeView(heartsStore: heartsStore)
+                Button {
+                    endlessModeSession = EndlessModeSession()
                 } label: {
                     ModeCard(title: "무한 모드", subtitle: "한 단어씩, 몇 개까지 맞히는지 도전해보세요", isEnabled: true)
                 }
@@ -46,6 +47,9 @@ struct HomeView: View {
                 Spacer()
             }
             .padding()
+            .navigationDestination(item: $endlessModeSession) { _ in
+                EndlessModeView(heartsStore: heartsStore)
+            }
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
@@ -53,6 +57,14 @@ struct HomeView: View {
             }
         }
     }
+}
+
+// Each tap of "무한 모드" creates a new session with a fresh identity, so
+// .navigationDestination(item:) is forced to build a brand-new EndlessModeView
+// (and therefore a brand-new EndlessGameViewModel) every time, rather than
+// potentially reusing @State tied to the old NavigationLink's destination slot.
+private struct EndlessModeSession: Identifiable, Hashable {
+    let id = UUID()
 }
 
 private struct CouponBanner: View {
