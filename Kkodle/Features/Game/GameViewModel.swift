@@ -51,6 +51,22 @@ final class GameViewModel {
         self.maxAttempts = maxAttempts
     }
 
+    /// Rebuilds a previously-completed game from its submitted guess words, without
+    /// re-validating them against the dictionary (they were already valid when first submitted).
+    init(answer: String, validWords: Set<String>, maxAttempts: Int = 6, restoringGuesses guessWords: [String], status: GameStatus) {
+        self.answerWord = answer
+        let atoms = HangulAtomizer.atomize(answer) ?? []
+        self.answerAtoms = atoms
+        self.validWords = validWords
+        self.maxAttempts = maxAttempts
+        self.submittedGuesses = guessWords.compactMap { guessWord in
+            guard let guessAtoms = HangulAtomizer.atomize(guessWord),
+                  let hints = try? WordComparer.compare(guess: guessAtoms, answer: atoms) else { return nil }
+            return GuessResult(atoms: guessAtoms, hints: hints)
+        }
+        self.status = status
+    }
+
     var atomCount: Int { answerAtoms.count }
     var attemptsUsed: Int { submittedGuesses.count }
 
