@@ -26,7 +26,7 @@ struct GameGridView: View {
     }
 }
 
-private struct GameGridCellView: View {
+struct GameGridCellView: View {
     let cell: GridCell
     let size: CGFloat
 

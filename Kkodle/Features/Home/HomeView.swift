@@ -11,6 +11,7 @@ struct HomeView: View {
     @State private var heartsStore = HeartsStore()
     @Environment(\.scenePhase) private var scenePhase
     @State private var endlessModeSession: EndlessModeSession?
+    @State private var timeAttackSession: TimeAttackSession?
 
     var body: some View {
         NavigationStack {
@@ -41,7 +42,13 @@ struct HomeView: View {
                 }
                 .buttonStyle(.plain)
 
-                ModeCard(title: "시간 제한 모드", subtitle: "3분 안에 최대한 많이 맞춰보세요", isEnabled: false)
+                Button {
+                    timeAttackSession = TimeAttackSession()
+                } label: {
+                    ModeCard(title: "시간 제한 모드", subtitle: "3분 안에 최대한 많이 맞춰보세요", isEnabled: true)
+                }
+                .buttonStyle(.plain)
+
                 ModeCard(title: "실시간 대결", subtitle: "다른 유저와 실시간으로 대결", isEnabled: false)
 
                 Spacer()
@@ -49,6 +56,9 @@ struct HomeView: View {
             .padding()
             .navigationDestination(item: $endlessModeSession) { _ in
                 EndlessModeView(heartsStore: heartsStore)
+            }
+            .navigationDestination(item: $timeAttackSession) { _ in
+                TimeAttackModeView(heartsStore: heartsStore)
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
@@ -64,6 +74,10 @@ struct HomeView: View {
 // (and therefore a brand-new EndlessGameViewModel) every time, rather than
 // potentially reusing @State tied to the old NavigationLink's destination slot.
 private struct EndlessModeSession: Identifiable, Hashable {
+    let id = UUID()
+}
+
+private struct TimeAttackSession: Identifiable, Hashable {
     let id = UUID()
 }
 
