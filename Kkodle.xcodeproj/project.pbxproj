@@ -23,6 +23,9 @@
 		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
 		FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */; };
 		04415D201B434796858A450A /* HeartsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */; };
+		25C53C8790984E00AF165AC8 /* TimeAttackHighScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */; };
+		BF62A211F32940E69EB3086C /* TimeAttackGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EBFEDE485C42E888EC3B2A /* TimeAttackGameViewModel.swift */; };
+		4077BDE0644D4B2C8CE767A0 /* TimeAttackModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC65C0EFC143AFBCA620D9 /* TimeAttackModeView.swift */; };
 		E966AE57062B43129274A566 /* DailyWordProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3127C523BDBC4C4D8F20791C /* DailyWordProgressStore.swift */; };
 		F90FD21C25DD4244902236B5 /* EndlessHighScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */; };
 		76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */; };
@@ -43,6 +46,9 @@
 		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		1990422750D74195BA6CB6B8 /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsStore.swift; sourceTree = "<group>"; };
+		3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAttackHighScoreStore.swift; sourceTree = "<group>"; };
+		25EBFEDE485C42E888EC3B2A /* TimeAttackGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAttackGameViewModel.swift; sourceTree = "<group>"; };
+		5DCC65C0EFC143AFBCA620D9 /* TimeAttackModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAttackModeView.swift; sourceTree = "<group>"; };
 		3127C523BDBC4C4D8F20791C /* DailyWordProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWordProgressStore.swift; sourceTree = "<group>"; };
 		0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessHighScoreStore.swift; sourceTree = "<group>"; };
 		F004E85B75CA4850B36758A3 /* HeartsIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsIndicatorView.swift; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 				A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */,
 				0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */,
 				3127C523BDBC4C4D8F20791C /* DailyWordProgressStore.swift */,
+				3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -115,6 +122,15 @@
 			path = DailyWord;
 			sourceTree = "<group>";
 		};
+		D82E18016C3F482884AED0A9 /* TimeAttack */ = {
+			isa = PBXGroup;
+			children = (
+				25EBFEDE485C42E888EC3B2A /* TimeAttackGameViewModel.swift */,
+				5DCC65C0EFC143AFBCA620D9 /* TimeAttackModeView.swift */,
+			);
+			path = TimeAttack;
+			sourceTree = "<group>";
+		};
 		6D6A982ABEAD44C791FCE553 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +147,7 @@
 				CEF56320A96B4F1CBF5E2261 /* Home */,
 				B545BD264B2540959259C771 /* DailyWord */,
 				6D6A982ABEAD44C791FCE553 /* Endless */,
+				D82E18016C3F482884AED0A9 /* TimeAttack */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -261,6 +278,9 @@
 				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
 				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
 				04415D201B434796858A450A /* HeartsStore.swift in Sources */,
+				25C53C8790984E00AF165AC8 /* TimeAttackHighScoreStore.swift in Sources */,
+				BF62A211F32940E69EB3086C /* TimeAttackGameViewModel.swift in Sources */,
+				4077BDE0644D4B2C8CE767A0 /* TimeAttackModeView.swift in Sources */,
 				E966AE57062B43129274A566 /* DailyWordProgressStore.swift in Sources */,
 				F90FD21C25DD4244902236B5 /* EndlessHighScoreStore.swift in Sources */,
 				76D86ED7637D449B832B5F5F /* HeartsIndicatorView.swift in Sources */,
