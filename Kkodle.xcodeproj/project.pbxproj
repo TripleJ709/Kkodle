@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04415D201B434796858A450A /* HeartsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */; };
+		E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585BFF422BA5468F939ECED8 /* AuthService.swift */; };
+		CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */; };
+		D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */; };
 		174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */; };
 		25C53C8790984E00AF165AC8 /* TimeAttackHighScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */; };
 		4077BDE0644D4B2C8CE767A0 /* TimeAttackModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC65C0EFC143AFBCA620D9 /* TimeAttackModeView.swift */; };
@@ -64,6 +67,9 @@
 		8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsStore.swift; sourceTree = "<group>"; };
+		585BFF422BA5468F939ECED8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomState.swift; sourceTree = "<group>"; };
+		FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomService.swift; sourceTree = "<group>"; };
 		C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessModeView.swift; sourceTree = "<group>"; };
 		C9687487A8FB4885935FF914 /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		EE34726A34818284142181E7 /* HangulJamoExploder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulJamoExploder.swift; sourceTree = "<group>"; };
@@ -125,6 +131,9 @@
 				513A5BBCCC5D4769A4995A95 /* HangulComposer.swift */,
 				9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */,
 				A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */,
+				585BFF422BA5468F939ECED8 /* AuthService.swift */,
+				FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */,
+				FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */,
 				0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */,
 				3127C523BDBC4C4D8F20791C /* DailyWordProgressStore.swift */,
 				3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */,
@@ -294,6 +303,9 @@
 				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
 				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
 				04415D201B434796858A450A /* HeartsStore.swift in Sources */,
+				E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */,
+				CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */,
+				D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */,
 				25C53C8790984E00AF165AC8 /* TimeAttackHighScoreStore.swift in Sources */,
 				BF62A211F32940E69EB3086C /* TimeAttackGameViewModel.swift in Sources */,
 				4077BDE0644D4B2C8CE767A0 /* TimeAttackModeView.swift in Sources */,
