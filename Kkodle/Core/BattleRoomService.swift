@@ -72,44 +72,39 @@ final class BattleRoomService {
         roomRef(code).removeObserver(withHandle: handle)
     }
 
-    /// Appends the guess to the current player's list, then either ends the run (win)
-    /// or hands the turn to the opponent — all inside one transaction so a race between
-    /// both players never corrupts whose turn it is.
-    func submitGuess(code: String, userId: String, opponentId: String, guess: String, isCorrect: Bool) async throws {
-        let ref = roomRef(code)
+    /// Appends to the room's ONE shared guess history at `guessIndex`, then either ends the
+    /// game (win/draw) or hands the turn to the opponent.
+    ///
+    /// This used to run as a `runTransactionBlock` for atomicity, but transaction-committed
+    /// writes were found not to reliably wake up other clients' `.observe(.value)` listeners
+    /// (confirmed on both simulator and a real device — the submitting client's own listener
+    /// could go stale too), leaving the opponent's screen stuck. A plain multi-path update
+    /// does trigger listeners reliably. This is a casual 1v1 game between two people taking
+    /// turns, so the small race window this trades away (two clients both believing it's their
+    /// turn at once) isn't worth the reliability cost — `isMyTurn` is still checked client-side
+    /// before this is ever called.
+    func submitGuess(code: String, userId: String, opponentId: String, guessIndex: Int, guess: String, isCorrect: Bool) async throws {
+        var updates: [String: Any] = [
+            "guesses/\(guessIndex)/userId": userId,
+            "guesses/\(guessIndex)/word": guess,
+        ]
+        if isCorrect {
+            updates["status"] = BattleRoomState.Status.ended.rawValue
+            updates["winnerId"] = userId
+        } else if guessIndex + 1 >= BattleRoomState.maxAttempts {
+            updates["status"] = BattleRoomState.Status.ended.rawValue
+            updates["winnerId"] = NSNull()
+        } else {
+            updates["currentTurnUserId"] = opponentId
+        }
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            ref.runTransactionBlock({ currentData in
-                guard var room = currentData.value as? [String: Any] else {
-                    return TransactionResult.success(withValue: currentData)
-                }
-                guard room["currentTurnUserId"] as? String == userId else {
-                    return TransactionResult.abort()
-                }
-                var guesses = room["guesses"] as? [String: [String: String]] ?? [:]
-                var myGuesses = guesses[userId] ?? [:]
-                let nextIndex = String(myGuesses.count)
-                myGuesses[nextIndex] = guess
-                guesses[userId] = myGuesses
-                room["guesses"] = guesses
-
-                if isCorrect {
-                    room["status"] = BattleRoomState.Status.ended.rawValue
-                    room["winnerId"] = userId
-                } else {
-                    room["currentTurnUserId"] = opponentId
-                }
-
-                currentData.value = room
-                return TransactionResult.success(withValue: currentData)
-            }, andCompletionBlock: { error, committed, _ in
+            roomRef(code).updateChildValues(updates) { error, _ in
                 if let error {
                     continuation.resume(throwing: error)
-                } else if !committed {
-                    continuation.resume(throwing: BattleRoomError.notYourTurn)
                 } else {
                     continuation.resume()
                 }
-            })
+            }
         }
     }
 

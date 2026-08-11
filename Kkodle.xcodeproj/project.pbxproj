@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04415D201B434796858A450A /* HeartsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */; };
+		DDD7494235FE4BC2AC680C70 /* BattleGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420F191C1F64280948F489C /* BattleGameViewModel.swift */; };
+		8EE581273D2A431EBA27BE44 /* BattleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB77B747F94ED6AB7ED343 /* BattleEntryView.swift */; };
+		D6FA9FF7A4104596A2A66CCB /* BattleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3761D2C6E96401D86B3BF59 /* BattleGameView.swift */; };
 		E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585BFF422BA5468F939ECED8 /* AuthService.swift */; };
 		CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */; };
 		D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */; };
@@ -67,6 +70,9 @@
 		8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsStore.swift; sourceTree = "<group>"; };
+		B420F191C1F64280948F489C /* BattleGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleGameViewModel.swift; sourceTree = "<group>"; };
+		87DB77B747F94ED6AB7ED343 /* BattleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleEntryView.swift; sourceTree = "<group>"; };
+		C3761D2C6E96401D86B3BF59 /* BattleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleGameView.swift; sourceTree = "<group>"; };
 		585BFF422BA5468F939ECED8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomState.swift; sourceTree = "<group>"; };
 		FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomService.swift; sourceTree = "<group>"; };
@@ -109,6 +115,16 @@
 				47DC8736F5D740FBA605E04C /* validGuesses_5.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C805ED2F263F46DF9C538872 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				B420F191C1F64280948F489C /* BattleGameViewModel.swift */,
+				87DB77B747F94ED6AB7ED343 /* BattleEntryView.swift */,
+				C3761D2C6E96401D86B3BF59 /* BattleGameView.swift */,
+			);
+			path = Battle;
 			sourceTree = "<group>";
 		};
 		6D6A982ABEAD44C791FCE553 /* Endless */ = {
@@ -177,6 +193,7 @@
 				CEF56320A96B4F1CBF5E2261 /* Home */,
 				B545BD264B2540959259C771 /* DailyWord */,
 				6D6A982ABEAD44C791FCE553 /* Endless */,
+				C805ED2F263F46DF9C538872 /* Battle */,
 				D82E18016C3F482884AED0A9 /* TimeAttack */,
 			);
 			path = Features;
@@ -303,6 +320,9 @@
 				AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */,
 				FEB31ABF2DEF41FB8E66CDC7 /* GameResultOverlay.swift in Sources */,
 				04415D201B434796858A450A /* HeartsStore.swift in Sources */,
+				DDD7494235FE4BC2AC680C70 /* BattleGameViewModel.swift in Sources */,
+				8EE581273D2A431EBA27BE44 /* BattleEntryView.swift in Sources */,
+				D6FA9FF7A4104596A2A66CCB /* BattleGameView.swift in Sources */,
 				E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */,
 				CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */,
 				D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */,
