@@ -138,6 +138,35 @@ final class BattleRoomService {
         roomRef(code).removeValue()
     }
 
+    /// While waiting for an opponent, clean up the room automatically if the
+    /// host's connection drops (app killed, network loss) instead of leaving
+    /// an orphaned room behind forever.
+    func armRoomCleanupOnDisconnect(code: String) {
+        roomRef(code).onDisconnectRemoveValue()
+    }
+
+    /// Once a match is in progress, replace the cleanup handler with a
+    /// forfeit: if my connection drops mid-game, the server ends the game
+    /// and hands the win to my opponent instead of leaving their screen
+    /// stuck waiting on someone who's gone. Registering a new onDisconnect
+    /// operation at the same path replaces whatever was previously armed
+    /// there, so this doesn't need to explicitly cancel the waiting-room
+    /// cleanup handler above first.
+    func armForfeitOnDisconnect(code: String, forfeitToOpponentId: String) {
+        roomRef(code).onDisconnectUpdateChildValues([
+            "status": BattleRoomState.Status.ended.rawValue,
+            "winnerId": forfeitToOpponentId,
+            "forfeited": true,
+        ])
+    }
+
+    /// Disarms whatever onDisconnect handler is pending, so a later
+    /// disconnect (e.g. quitting the app after a match already ended
+    /// normally) doesn't retroactively overwrite a legitimate result.
+    func cancelDisconnectHandler(code: String) {
+        roomRef(code).cancelDisconnectOperations()
+    }
+
     private func roomRef(_ code: String) -> DatabaseReference {
         db.child("rooms").child(code)
     }

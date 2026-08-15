@@ -29,6 +29,11 @@ struct BattleRoomState: Codable, Equatable {
     var status: Status
     var currentTurnUserId: String?
     var winnerId: String?
+    /// True when the game ended because the opponent's connection dropped
+    /// (see `BattleRoomService.armForfeitOnDisconnect`) rather than a normal
+    /// correct guess or running out of attempts — lets the result screen
+    /// explain the sudden win instead of it looking unexplained.
+    var forfeited: Bool
     var createdAt: Double
     /// Epoch timestamp (seconds) at which the current turn expires. Absent
     /// while `status == .waiting` (no turn is running yet); set on join and
@@ -51,6 +56,7 @@ struct BattleRoomState: Codable, Equatable {
         status: Status,
         currentTurnUserId: String?,
         winnerId: String?,
+        forfeited: Bool = false,
         createdAt: Double,
         turnDeadline: Double? = nil,
         guesses: [BattleGuessEntry] = []
@@ -61,13 +67,14 @@ struct BattleRoomState: Codable, Equatable {
         self.status = status
         self.currentTurnUserId = currentTurnUserId
         self.winnerId = winnerId
+        self.forfeited = forfeited
         self.createdAt = createdAt
         self.turnDeadline = turnDeadline
         self.guesses = guesses
     }
 
     private enum CodingKeys: String, CodingKey {
-        case hostId, guestId, answer, status, currentTurnUserId, winnerId, createdAt, turnDeadline, guesses
+        case hostId, guestId, answer, status, currentTurnUserId, winnerId, forfeited, createdAt, turnDeadline, guesses
     }
 
     // Realtime Database omits keys whose value is an empty object (there's no
@@ -83,6 +90,7 @@ struct BattleRoomState: Codable, Equatable {
         status = try container.decode(Status.self, forKey: .status)
         currentTurnUserId = try container.decodeIfPresent(String.self, forKey: .currentTurnUserId)
         winnerId = try container.decodeIfPresent(String.self, forKey: .winnerId)
+        forfeited = try container.decodeIfPresent(Bool.self, forKey: .forfeited) ?? false
         createdAt = try container.decode(Double.self, forKey: .createdAt)
         turnDeadline = try container.decodeIfPresent(Double.self, forKey: .turnDeadline)
         guesses = try container.decodeIfPresent([BattleGuessEntry].self, forKey: .guesses) ?? []

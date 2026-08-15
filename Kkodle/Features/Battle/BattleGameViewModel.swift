@@ -26,6 +26,10 @@ final class BattleGameViewModel {
     /// Guards against re-firing the timeout pass every tick while waiting for
     /// the server write we already sent to come back through the listener.
     private var timeoutHandledForDeadline: Double?
+    /// Tracks which room status we last armed an onDisconnect handler for, so
+    /// we only re-register it on an actual transition (waiting → playing →
+    /// ended), not on every listener update.
+    private var disconnectHandlerArmedFor: BattleRoomState.Status?
 
     init(service: BattleRoomService, code: String, myUserId: String, validWords: Set<String>) {
         self.service = service
@@ -45,6 +49,9 @@ final class BattleGameViewModel {
                 self.room = newRoom
             }
             self.refreshTurnTimer()
+            if let newRoom {
+                self.syncDisconnectHandler(for: newRoom)
+            }
         }
     }
 
@@ -56,8 +63,29 @@ final class BattleGameViewModel {
     }
 
     func leaveRoom() {
+        service.cancelDisconnectHandler(code: code)
         stopObserving()
         service.leaveRoom(code: code)
+    }
+
+    /// Keeps a server-side onDisconnect handler in sync with what should
+    /// happen if *this* client vanishes right now: clean up an abandoned
+    /// waiting room, forfeit an in-progress match to the opponent, or do
+    /// nothing once the match already ended normally. See
+    /// `BattleRoomService`'s onDisconnect methods for why re-registering
+    /// replaces rather than stacks.
+    private func syncDisconnectHandler(for room: BattleRoomState) {
+        guard disconnectHandlerArmedFor != room.status else { return }
+        switch room.status {
+        case .waiting:
+            service.armRoomCleanupOnDisconnect(code: code)
+        case .playing:
+            guard let opponentId = room.opponentId(of: myUserId) else { return }
+            service.armForfeitOnDisconnect(code: code, forfeitToOpponentId: opponentId)
+        case .ended:
+            service.cancelDisconnectHandler(code: code)
+        }
+        disconnectHandlerArmedFor = room.status
     }
 
     func clearError() {

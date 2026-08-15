@@ -43,6 +43,7 @@ struct BattleGameView: View {
                     BattleResultOverlay(
                         didIWin: room.winnerId == viewModel.myUserId,
                         isDraw: room.winnerId == nil,
+                        wasForfeited: room.forfeited,
                         answerWord: room.answer,
                         onBack: {
                             viewModel.leaveRoom()
@@ -264,6 +265,7 @@ private struct BattleKeyboardView: View {
 private struct BattleResultOverlay: View {
     let didIWin: Bool
     let isDraw: Bool
+    let wasForfeited: Bool
     let answerWord: String
     let onBack: () -> Void
 
@@ -274,6 +276,11 @@ private struct BattleResultOverlay: View {
                 Text(isDraw ? "무승부" : (didIWin ? "승리!🎉" : "패배"))
                     .font(.title2.bold())
                     .foregroundStyle(isDraw ? Color.primary : (didIWin ? Color.green : Color.red))
+                if wasForfeited {
+                    Text("상대방의 연결이 끊겨서 게임이 종료됐어요")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
                 Text("정답은 \"\(answerWord)\" 였어요")
                     .font(.body)
                     .foregroundStyle(.secondary)
