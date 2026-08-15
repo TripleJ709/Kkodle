@@ -68,3 +68,6 @@ fastlane/test_output
 CLAUDE.md
 .claude/settings.local.json
 .claude/worktrees/
+
+# Firebase
+GoogleService-Info.plist

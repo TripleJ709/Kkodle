@@ -12,6 +12,7 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var endlessModeSession: EndlessModeSession?
     @State private var timeAttackSession: TimeAttackSession?
+    @State private var battleSession: BattleSession?
 
     var body: some View {
         NavigationStack {
@@ -49,7 +50,12 @@ struct HomeView: View {
                 }
                 .buttonStyle(.plain)
 
-                ModeCard(title: "실시간 대결", subtitle: "다른 유저와 실시간으로 대결", isEnabled: false)
+                Button {
+                    battleSession = BattleSession()
+                } label: {
+                    ModeCard(title: "실시간 대결", subtitle: "다른 유저와 실시간으로 대결", isEnabled: true)
+                }
+                .buttonStyle(.plain)
 
                 Spacer()
             }
@@ -59,6 +65,9 @@ struct HomeView: View {
             }
             .navigationDestination(item: $timeAttackSession) { _ in
                 TimeAttackModeView(heartsStore: heartsStore)
+            }
+            .navigationDestination(item: $battleSession) { _ in
+                BattleEntryView()
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
@@ -78,6 +87,10 @@ private struct EndlessModeSession: Identifiable, Hashable {
 }
 
 private struct TimeAttackSession: Identifiable, Hashable {
+    let id = UUID()
+}
+
+private struct BattleSession: Identifiable, Hashable {
     let id = UUID()
 }
 

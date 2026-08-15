@@ -1,0 +1,106 @@
+//
+//  BattleRoomState.swift
+//  Kkodle
+//
+//  Created by 장주진 on 8/10/26.
+//
+
+import Foundation
+
+struct BattleGuessEntry: Codable, Equatable {
+    var userId: String
+    var word: String
+}
+
+struct BattleRoomState: Codable, Equatable {
+    enum Status: String, Codable {
+        case waiting
+        case playing
+        case ended
+    }
+
+    static let maxAttempts = 6
+    /// How long the active player has to submit before their turn passes.
+    static let turnDuration: TimeInterval = 20
+
+    var hostId: String
+    var guestId: String?
+    var answer: String
+    var status: Status
+    var currentTurnUserId: String?
+    var winnerId: String?
+    /// True when the game ended because the opponent's connection dropped
+    /// (see `BattleRoomService.armForfeitOnDisconnect`) rather than a normal
+    /// correct guess or running out of attempts — lets the result screen
+    /// explain the sudden win instead of it looking unexplained.
+    var forfeited: Bool
+    var createdAt: Double
+    /// Epoch timestamp (seconds) at which the current turn expires. Absent
+    /// while `status == .waiting` (no turn is running yet); set on join and
+    /// refreshed every time the turn changes hands.
+    var turnDeadline: Double?
+    /// One shared guess history both players contribute to in turn order —
+    /// this is a battle over a single board, not two separate ones.
+    /// Written at integer paths ("guesses/0", "guesses/1", ...); Realtime
+    /// Database serializes an object whose keys are all sequential integers
+    /// as a JSON array on read (not as an object), so this must be modeled
+    /// as a native Swift array to match the wire shape — a
+    /// `[String: BattleGuessEntry]` dictionary fails to decode with a
+    /// typeMismatch against that array.
+    var guesses: [BattleGuessEntry]
+
+    init(
+        hostId: String,
+        guestId: String?,
+        answer: String,
+        status: Status,
+        currentTurnUserId: String?,
+        winnerId: String?,
+        forfeited: Bool = false,
+        createdAt: Double,
+        turnDeadline: Double? = nil,
+        guesses: [BattleGuessEntry] = []
+    ) {
+        self.hostId = hostId
+        self.guestId = guestId
+        self.answer = answer
+        self.status = status
+        self.currentTurnUserId = currentTurnUserId
+        self.winnerId = winnerId
+        self.forfeited = forfeited
+        self.createdAt = createdAt
+        self.turnDeadline = turnDeadline
+        self.guesses = guesses
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hostId, guestId, answer, status, currentTurnUserId, winnerId, forfeited, createdAt, turnDeadline, guesses
+    }
+
+    // Realtime Database omits keys whose value is an empty object (there's no
+    // "empty object" in its data model), so a room with zero guesses so far
+    // arrives with the `guesses` key missing entirely rather than `{}`. Decode
+    // it defensively instead of relying on the synthesized decoder, which would
+    // otherwise throw `keyNotFound` for a perfectly normal, guess-less room.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        hostId = try container.decode(String.self, forKey: .hostId)
+        guestId = try container.decodeIfPresent(String.self, forKey: .guestId)
+        answer = try container.decode(String.self, forKey: .answer)
+        status = try container.decode(Status.self, forKey: .status)
+        currentTurnUserId = try container.decodeIfPresent(String.self, forKey: .currentTurnUserId)
+        winnerId = try container.decodeIfPresent(String.self, forKey: .winnerId)
+        forfeited = try container.decodeIfPresent(Bool.self, forKey: .forfeited) ?? false
+        createdAt = try container.decode(Double.self, forKey: .createdAt)
+        turnDeadline = try container.decodeIfPresent(Double.self, forKey: .turnDeadline)
+        guesses = try container.decodeIfPresent([BattleGuessEntry].self, forKey: .guesses) ?? []
+    }
+
+    var isFull: Bool { guestId != nil }
+
+    var orderedGuesses: [BattleGuessEntry] { guesses }
+
+    func opponentId(of userId: String) -> String? {
+        userId == hostId ? guestId : hostId
+    }
+}
