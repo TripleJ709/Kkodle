@@ -20,8 +20,12 @@ final class BattleGameViewModel {
     private(set) var currentGuess: [Character] = []
     private(set) var errorMessage: String?
     private(set) var isSubmitting = false
+    private(set) var remainingTurnSeconds: Int = Int(BattleRoomState.turnDuration)
 
     private var observerHandle: DatabaseHandle?
+    /// Guards against re-firing the timeout pass every tick while waiting for
+    /// the server write we already sent to come back through the listener.
+    private var timeoutHandledForDeadline: Double?
 
     init(service: BattleRoomService, code: String, myUserId: String, validWords: Set<String>) {
         self.service = service
@@ -40,6 +44,7 @@ final class BattleGameViewModel {
             if newRoom != nil || self.room == nil {
                 self.room = newRoom
             }
+            self.refreshTurnTimer()
         }
     }
 
@@ -57,6 +62,28 @@ final class BattleGameViewModel {
 
     func clearError() {
         errorMessage = nil
+    }
+
+    /// Recomputes the turn countdown from the server-synced deadline, and —
+    /// if it's the *opponent's* turn that ran out — reports the timeout so
+    /// the turn passes to me. Only the waiting player does this (not the
+    /// active one) so a backgrounded/stuck opponent's turn still gets
+    /// reclaimed instead of stalling the game.
+    func refreshTurnTimer(referenceDate: Date = Date()) {
+        guard let room, room.status == .playing, let deadline = room.turnDeadline else {
+            remainingTurnSeconds = Int(BattleRoomState.turnDuration)
+            return
+        }
+        let remaining = deadline - referenceDate.timeIntervalSince1970
+        remainingTurnSeconds = max(0, Int(remaining.rounded(.up)))
+
+        // Small grace window past zero to absorb clock drift/latency against a
+        // submission that's already in flight from the active player's side.
+        guard remaining <= -1, !isMyTurn, let opponentId, timeoutHandledForDeadline != deadline else { return }
+        timeoutHandledForDeadline = deadline
+        Task {
+            try? await service.passTurnOnTimeout(code: code, newActiveUserId: myUserId)
+        }
     }
 
     var isMyTurn: Bool { room?.currentTurnUserId == myUserId }
@@ -147,6 +174,7 @@ final class BattleGameViewModel {
                 currentRoom.winnerId = nil
             } else {
                 currentRoom.currentTurnUserId = opponentId
+                currentRoom.turnDeadline = Date().timeIntervalSince1970 + BattleRoomState.turnDuration
             }
             room = currentRoom
         } catch {

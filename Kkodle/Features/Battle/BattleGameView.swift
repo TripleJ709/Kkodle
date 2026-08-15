@@ -99,10 +99,20 @@ struct BattleGameView: View {
     }
 
     private var turnIndicator: some View {
-        Text(viewModel.isMyTurn ? "내 차례예요" : "상대방 차례예요")
-            .font(.headline)
-            .foregroundStyle(viewModel.isMyTurn ? Color.green : Color.secondary)
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            HStack(spacing: 6) {
+                Text(viewModel.isMyTurn ? "내 차례예요" : "상대방 차례예요")
+                    .font(.headline)
+                    .foregroundStyle(viewModel.isMyTurn ? Color.green : Color.secondary)
+                Text("\(viewModel.remainingTurnSeconds)초")
+                    .font(.headline.monospacedDigit())
+                    .foregroundStyle(viewModel.remainingTurnSeconds <= 5 ? Color.red : Color.secondary)
+            }
             .padding(.top, 8)
+            .onChange(of: context.date) { _, newDate in
+                viewModel.refreshTurnTimer(referenceDate: newDate)
+            }
+        }
     }
 }
 

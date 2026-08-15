@@ -50,7 +50,11 @@ final class BattleRoomService {
             throw BattleRoomError.roomFull
         }
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            ref.updateChildValues(["guestId": guestId, "status": BattleRoomState.Status.playing.rawValue]) { error, _ in
+            ref.updateChildValues([
+                "guestId": guestId,
+                "status": BattleRoomState.Status.playing.rawValue,
+                "turnDeadline": Date().timeIntervalSince1970 + BattleRoomState.turnDuration,
+            ]) { error, _ in
                 if let error {
                     continuation.resume(throwing: error)
                 } else {
@@ -96,7 +100,29 @@ final class BattleRoomService {
             updates["winnerId"] = NSNull()
         } else {
             updates["currentTurnUserId"] = opponentId
+            updates["turnDeadline"] = Date().timeIntervalSince1970 + BattleRoomState.turnDuration
         }
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            roomRef(code).updateChildValues(updates) { error, _ in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume()
+                }
+            }
+        }
+    }
+
+    /// Called by the *waiting* player when the active player's turn deadline
+    /// passes, handing the turn to whoever calls this. Plain update rather
+    /// than a guarded transaction, same reliability/simplicity tradeoff as
+    /// `submitGuess` above — the small race window against a same-moment
+    /// submission isn't worth trading away listener reliability for.
+    func passTurnOnTimeout(code: String, newActiveUserId: String) async throws {
+        let updates: [String: Any] = [
+            "currentTurnUserId": newActiveUserId,
+            "turnDeadline": Date().timeIntervalSince1970 + BattleRoomState.turnDuration,
+        ]
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             roomRef(code).updateChildValues(updates) { error, _ in
                 if let error {

@@ -20,6 +20,8 @@ struct BattleRoomState: Codable, Equatable {
     }
 
     static let maxAttempts = 6
+    /// How long the active player has to submit before their turn passes.
+    static let turnDuration: TimeInterval = 20
 
     var hostId: String
     var guestId: String?
@@ -28,6 +30,10 @@ struct BattleRoomState: Codable, Equatable {
     var currentTurnUserId: String?
     var winnerId: String?
     var createdAt: Double
+    /// Epoch timestamp (seconds) at which the current turn expires. Absent
+    /// while `status == .waiting` (no turn is running yet); set on join and
+    /// refreshed every time the turn changes hands.
+    var turnDeadline: Double?
     /// One shared guess history both players contribute to in turn order —
     /// this is a battle over a single board, not two separate ones.
     /// Written at integer paths ("guesses/0", "guesses/1", ...); Realtime
@@ -46,6 +52,7 @@ struct BattleRoomState: Codable, Equatable {
         currentTurnUserId: String?,
         winnerId: String?,
         createdAt: Double,
+        turnDeadline: Double? = nil,
         guesses: [BattleGuessEntry] = []
     ) {
         self.hostId = hostId
@@ -55,11 +62,12 @@ struct BattleRoomState: Codable, Equatable {
         self.currentTurnUserId = currentTurnUserId
         self.winnerId = winnerId
         self.createdAt = createdAt
+        self.turnDeadline = turnDeadline
         self.guesses = guesses
     }
 
     private enum CodingKeys: String, CodingKey {
-        case hostId, guestId, answer, status, currentTurnUserId, winnerId, createdAt, guesses
+        case hostId, guestId, answer, status, currentTurnUserId, winnerId, createdAt, turnDeadline, guesses
     }
 
     // Realtime Database omits keys whose value is an empty object (there's no
@@ -76,6 +84,7 @@ struct BattleRoomState: Codable, Equatable {
         currentTurnUserId = try container.decodeIfPresent(String.self, forKey: .currentTurnUserId)
         winnerId = try container.decodeIfPresent(String.self, forKey: .winnerId)
         createdAt = try container.decode(Double.self, forKey: .createdAt)
+        turnDeadline = try container.decodeIfPresent(Double.self, forKey: .turnDeadline)
         guesses = try container.decodeIfPresent([BattleGuessEntry].self, forKey: .guesses) ?? []
     }
 
