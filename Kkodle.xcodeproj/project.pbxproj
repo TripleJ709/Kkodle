@@ -32,6 +32,7 @@
 		914EE66130C44FB3961AF733 /* validGuesses_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 47DC8736F5D740FBA605E04C /* validGuesses_5.json */; };
 		AB017CF77A5D4C41881EDC62 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */; };
 		AF33DCA08C0B45B6905EB174 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3E5E791834C4DBBDAB406 /* HomeView.swift */; };
+		1315FF49416F4F71BAD567F3 /* GameHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E471FE02BE32411DAECBD1DE /* GameHelpView.swift */; };
 		AFDCC16D4C85459DA4AC30EC /* GameKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACE5784FD4442B6471E83 /* GameKeyboardView.swift */; };
 		B870CEBFCAB14979A884BC79 /* EndlessModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */; };
 		BF62A211F32940E69EB3086C /* TimeAttackGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EBFEDE485C42E888EC3B2A /* TimeAttackGameViewModel.swift */; };
@@ -53,6 +54,7 @@
 		2BC9A4434CC837F87DA4F52D /* HangulSyllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulSyllable.swift; sourceTree = "<group>"; };
 		3127C523BDBC4C4D8F20791C /* DailyWordProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWordProgressStore.swift; sourceTree = "<group>"; };
 		3BE3E5E791834C4DBBDAB406 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E471FE02BE32411DAECBD1DE /* GameHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHelpView.swift; sourceTree = "<group>"; };
 		3C185390A4BA44B0A96500F0 /* HangulAtomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulAtomizer.swift; sourceTree = "<group>"; };
 		3CB72979AB084C0ABBCAFEA7 /* TimeAttackHighScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAttackHighScoreStore.swift; sourceTree = "<group>"; };
 		3D3A62FCBBCA4FA1B8853D7D /* EndlessGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessGameViewModel.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				3BE3E5E791834C4DBBDAB406 /* HomeView.swift */,
+				E471FE02BE32411DAECBD1DE /* GameHelpView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF33DCA08C0B45B6905EB174 /* HomeView.swift in Sources */,
+				1315FF49416F4F71BAD567F3 /* GameHelpView.swift in Sources */,
 				F2D70F5526024CBF96367B10 /* DailyWordView.swift in Sources */,
 				89C3C69E3010C0570072E066 /* KkodleApp.swift in Sources */,
 				75BC855A03E046A894D34A09 /* HangulSyllable.swift in Sources */,
