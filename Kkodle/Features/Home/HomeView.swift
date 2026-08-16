@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var endlessModeSession: EndlessModeSession?
     @State private var timeAttackSession: TimeAttackSession?
     @State private var battleSession: BattleSession?
+    @State private var showGameHelp = false
 
     var body: some View {
         NavigationStack {
@@ -20,6 +21,15 @@ struct HomeView: View {
                 Text("꼬들꼬들")
                     .font(.largeTitle.bold())
                     .padding(.top, 40)
+
+                Button {
+                    showGameHelp = true
+                } label: {
+                    Label("게임 방법 보기", systemImage: "questionmark.circle")
+                        .font(.subheadline)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
 
                 HeartsIndicatorView(heartsStore: heartsStore)
 
@@ -32,28 +42,48 @@ struct HomeView: View {
                 NavigationLink {
                     DailyWordView(heartsStore: heartsStore)
                 } label: {
-                    ModeCard(title: "오늘의 단어", subtitle: "하루에 한 번, 오늘의 단어를 맞춰보세요", isEnabled: true)
+                    ModeCard(
+                        title: "오늘의 단어",
+                        subtitle: "하루에 한 번, 오늘의 단어를 맞춰보세요",
+                        info: "매일 새로운 정답 단어가 나와요. 하루에 한 번만 도전할 수 있고, 6번의 기회 안에 5글자 한국어 단어를 맞혀야 해요. 성공하면 하트 1개를 보너스로 받아요.",
+                        isEnabled: true
+                    )
                 }
                 .buttonStyle(.plain)
 
                 Button {
                     endlessModeSession = EndlessModeSession()
                 } label: {
-                    ModeCard(title: "무한 모드", subtitle: "한 단어씩, 몇 개까지 맞히는지 도전해보세요", isEnabled: true)
+                    ModeCard(
+                        title: "무한 모드",
+                        subtitle: "한 단어씩, 몇 개까지 맞히는지 도전해보세요",
+                        info: "목숨 1개로 계속 도전하는 모드예요. 한 단어를 6번 안에 못 맞히면 그대로 종료되고, 몇 개까지 연속으로 맞혔는지 기록이 남아요. 하트를 쓰면 실수해도 이어서 도전할 수 있어요.",
+                        isEnabled: true
+                    )
                 }
                 .buttonStyle(.plain)
 
                 Button {
                     timeAttackSession = TimeAttackSession()
                 } label: {
-                    ModeCard(title: "시간 제한 모드", subtitle: "3분 안에 최대한 많이 맞춰보세요", isEnabled: true)
+                    ModeCard(
+                        title: "시간 제한 모드",
+                        subtitle: "3분 안에 최대한 많이 맞춰보세요",
+                        info: "3분의 제한 시간 안에 최대한 많은 단어를 맞혀보는 모드예요. 하트를 쓰면 시간을 늘릴 수 있어요.",
+                        isEnabled: true
+                    )
                 }
                 .buttonStyle(.plain)
 
                 Button {
                     battleSession = BattleSession()
                 } label: {
-                    ModeCard(title: "실시간 대결", subtitle: "다른 유저와 실시간으로 대결", isEnabled: true)
+                    ModeCard(
+                        title: "실시간 대결",
+                        subtitle: "다른 유저와 실시간으로 대결",
+                        info: "초대 코드로 방을 만들어 다른 유저와 1:1로 대결해요. 하나의 판을 서로 번갈아 맞히고, 먼저 정답을 맞히는 사람이 승리해요. 턴마다 20초의 제한 시간이 있어요.",
+                        isEnabled: true
+                    )
                 }
                 .buttonStyle(.plain)
 
@@ -68,6 +98,9 @@ struct HomeView: View {
             }
             .navigationDestination(item: $battleSession) { _ in
                 BattleEntryView()
+            }
+            .sheet(isPresented: $showGameHelp) {
+                GameHelpView()
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
@@ -127,13 +160,22 @@ private struct CouponBanner: View {
 private struct ModeCard: View {
     let title: String
     let subtitle: String
+    let info: String
     let isEnabled: Bool
+    @State private var showInfo = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text(title)
                     .font(.headline)
+                Button {
+                    showInfo = true
+                } label: {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
                 Spacer()
                 if !isEnabled {
                     Text("준비 중")
@@ -151,6 +193,11 @@ private struct ModeCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .opacity(isEnabled ? 1 : 0.5)
         .foregroundStyle(Color.primary)
+        .alert(title, isPresented: $showInfo) {
+            Button("확인", role: .cancel) {}
+        } message: {
+            Text(info)
+        }
     }
 }
 
