@@ -19,7 +19,7 @@ struct GameHelpView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text("6번의 기회 안에 5글자 한국어 단어를 맞혀보세요. 음절이 아니라 자음/모음 하나하나 단위로 힌트가 나와요.")
+                    Text("제한된 기회 안에 5글자 한국어 단어를 맞혀보세요. 음절이 아니라 자음/모음 하나하나 단위로 힌트가 나와요.")
                         .font(.body)
 
                     VStack(alignment: .leading, spacing: 16) {
