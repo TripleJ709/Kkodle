@@ -32,6 +32,11 @@ struct TimeAttackModeView: View {
                         viewModel.useHeartToExtendTime()
                     }
                     .font(.caption.bold())
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 6)
+                    .background(KkodleTheme.ModeAccent.timeAttack.accent, in: Capsule())
+                    .buttonStyle(PressableButtonStyle())
                 }
 
                 ScrollViewReader { proxy in
@@ -56,6 +61,7 @@ struct TimeAttackModeView: View {
                 )
             }
         }
+        .background(KkodleTheme.background.ignoresSafeArea())
         .onChange(of: viewModel.currentRound.status) { _, _ in
             viewModel.handleRoundChange()
         }
@@ -139,15 +145,16 @@ private struct TimeAttackResultOverlay: View {
                 }
 
                 Button("돌아가기", action: onBack)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(Color.accentColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(KkodleTheme.ModeAccent.timeAttack.accent)
+                    .clipShape(Capsule())
                     .padding(.top, 8)
             }
+            .buttonStyle(PressableButtonStyle())
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(40)
         }
     }
