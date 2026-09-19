@@ -37,6 +37,6 @@ final class DailyWordProgressStore {
     }
 
     private static func epochDay(for date: Date) -> Int {
-        Int(date.timeIntervalSince1970 / 86400)
+        WordRepository.localEpochDay(for: date)
     }
 }

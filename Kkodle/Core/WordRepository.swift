@@ -24,8 +24,19 @@ struct WordRepository {
     func todayAnswer(referenceDate: Date = Date()) -> String? {
         let sorted = answers.sorted()
         guard !sorted.isEmpty else { return nil }
-        let daysSinceEpoch = Int(referenceDate.timeIntervalSince1970 / 86400)
+        let daysSinceEpoch = Self.localEpochDay(for: referenceDate)
         return sorted[daysSinceEpoch % sorted.count]
+    }
+
+    /// Days since the epoch, anchored to the device's local midnight rather
+    /// than UTC midnight — otherwise "오늘의 단어" would flip at 9am KST
+    /// instead of at local midnight, since raw `timeIntervalSince1970 / 86400`
+    /// steps at UTC day boundaries. Consecutive local midnights are still
+    /// always exactly 86400 seconds apart (Korea observes no DST), so this
+    /// stays a clean, monotonically increasing day counter.
+    static func localEpochDay(for date: Date, calendar: Calendar = .current) -> Int {
+        let startOfDay = calendar.startOfDay(for: date)
+        return Int(startOfDay.timeIntervalSince1970 / 86400)
     }
 
     func randomAnswer(excluding previous: String? = nil) -> String? {
