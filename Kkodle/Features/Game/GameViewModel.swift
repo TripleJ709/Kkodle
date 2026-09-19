@@ -44,7 +44,7 @@ final class GameViewModel {
     private let answerAtoms: [Character]
     private let validWords: Set<String>
 
-    init(answer: String, validWords: Set<String>, maxAttempts: Int = 6) {
+    init(answer: String, validWords: Set<String>, maxAttempts: Int = 5) {
         self.answerWord = answer
         self.answerAtoms = HangulAtomizer.atomize(answer) ?? []
         self.validWords = validWords
@@ -53,7 +53,7 @@ final class GameViewModel {
 
     /// Rebuilds a previously-completed game from its submitted guess words, without
     /// re-validating them against the dictionary (they were already valid when first submitted).
-    init(answer: String, validWords: Set<String>, maxAttempts: Int = 6, restoringGuesses guessWords: [String], status: GameStatus) {
+    init(answer: String, validWords: Set<String>, maxAttempts: Int = 5, restoringGuesses guessWords: [String], status: GameStatus) {
         self.answerWord = answer
         let atoms = HangulAtomizer.atomize(answer) ?? []
         self.answerAtoms = atoms
