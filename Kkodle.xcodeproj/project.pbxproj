@@ -12,6 +12,7 @@
 		8EE581273D2A431EBA27BE44 /* BattleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB77B747F94ED6AB7ED343 /* BattleEntryView.swift */; };
 		D6FA9FF7A4104596A2A66CCB /* BattleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3761D2C6E96401D86B3BF59 /* BattleGameView.swift */; };
 		E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585BFF422BA5468F939ECED8 /* AuthService.swift */; };
+		B43B71238F6A4689B71F5215 /* KkodleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB2C7BA0F547B68061078A /* KkodleTheme.swift */; };
 		CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */; };
 		D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */; };
 		174284B831AE40A09FFAFC92 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8F9FFF2394700AD213C4B /* GameViewModel.swift */; };
@@ -76,6 +77,7 @@
 		87DB77B747F94ED6AB7ED343 /* BattleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleEntryView.swift; sourceTree = "<group>"; };
 		C3761D2C6E96401D86B3BF59 /* BattleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleGameView.swift; sourceTree = "<group>"; };
 		585BFF422BA5468F939ECED8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		44CB2C7BA0F547B68061078A /* KkodleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KkodleTheme.swift; sourceTree = "<group>"; };
 		FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomState.swift; sourceTree = "<group>"; };
 		FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRoomService.swift; sourceTree = "<group>"; };
 		C8BBB122289A4F718AFD8198 /* EndlessModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessModeView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				9C92F27DBF6F4E27A4CDE28F /* WordRepository.swift */,
 				A7E2F7E86B3A45EEA94205B2 /* HeartsStore.swift */,
 				585BFF422BA5468F939ECED8 /* AuthService.swift */,
+				44CB2C7BA0F547B68061078A /* KkodleTheme.swift */,
 				FDD7CB42E8B947F98431EA91 /* BattleRoomState.swift */,
 				FAF1A5C475D14139A4BC21B7 /* BattleRoomService.swift */,
 				0914B65A265243698CD603D1 /* EndlessHighScoreStore.swift */,
@@ -328,6 +331,7 @@
 				8EE581273D2A431EBA27BE44 /* BattleEntryView.swift in Sources */,
 				D6FA9FF7A4104596A2A66CCB /* BattleGameView.swift in Sources */,
 				E0507F07E1AD4E5CAC7CF7F5 /* AuthService.swift in Sources */,
+				B43B71238F6A4689B71F5215 /* KkodleTheme.swift in Sources */,
 				CA270D68CBFF4117B041339B /* BattleRoomState.swift in Sources */,
 				D9ACEB7DAAAE442185FC0D07 /* BattleRoomService.swift in Sources */,
 				25C53C8790984E00AF165AC8 /* TimeAttackHighScoreStore.swift in Sources */,
