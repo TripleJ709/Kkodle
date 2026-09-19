@@ -58,14 +58,14 @@ struct GameKeyboardView: View {
             viewModel.inputAtom(atom)
         } label: {
             Text(String(atom))
-                .font(.system(size: 18, weight: .medium))
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundStyle(foregroundColor(for: atom))
                 .frame(width: keyWidth, height: 42)
                 .background(backgroundColor(for: atom))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 1)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: .black.opacity(0.12), radius: 0, x: 0, y: 2)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
     }
 
     private func deleteKey() -> some View {
@@ -77,10 +77,10 @@ struct GameKeyboardView: View {
                 .foregroundStyle(Color.primary)
                 .frame(width: keyWidth, height: 42)
                 .background(Color(white: 0.8))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 1)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: .black.opacity(0.12), radius: 0, x: 0, y: 2)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
     }
 
     private var isGuessComplete: Bool {
@@ -108,7 +108,7 @@ struct GameKeyboardView: View {
                     radius: 8, x: 0, y: 4
                 )
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
         .disabled(!isGuessComplete)
         .padding(.top, 8)
     }

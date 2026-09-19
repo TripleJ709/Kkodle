@@ -22,6 +22,7 @@ struct BattleGameView: View {
 
     var body: some View {
         content
+            .background(KkodleTheme.background.ignoresSafeArea())
             .navigationTitle("실시간 대결")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(viewModel.room?.status == .playing)
@@ -71,8 +72,8 @@ struct BattleGameView: View {
                 .tracking(4)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .background(KkodleTheme.ModeAccent.battle.fill)
+                .clipShape(RoundedRectangle(cornerRadius: KkodleTheme.cardCornerRadius))
                 .padding(.horizontal, 40)
             Text("이 코드를 친구에게 알려주세요")
                 .font(.caption)
@@ -188,14 +189,14 @@ private struct BattleKeyboardView: View {
             viewModel.inputAtom(atom)
         } label: {
             Text(String(atom))
-                .font(.system(size: 18, weight: .medium))
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundStyle(foregroundColor(for: atom))
                 .frame(width: keyWidth, height: 42)
                 .background(backgroundColor(for: atom))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 1)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: .black.opacity(0.12), radius: 0, x: 0, y: 2)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
     }
 
     private func deleteKey() -> some View {
@@ -207,10 +208,10 @@ private struct BattleKeyboardView: View {
                 .foregroundStyle(Color.primary)
                 .frame(width: keyWidth, height: 42)
                 .background(Color(white: 0.8))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 1)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: .black.opacity(0.12), radius: 0, x: 0, y: 2)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
     }
 
     private var isGuessComplete: Bool {
@@ -243,7 +244,7 @@ private struct BattleKeyboardView: View {
             )
             .clipShape(Capsule())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableButtonStyle())
         .disabled(!isGuessComplete || isSending)
         .padding(.top, 8)
     }
@@ -274,8 +275,8 @@ private struct BattleResultOverlay: View {
             Color.black.opacity(0.55).ignoresSafeArea()
             VStack(spacing: 12) {
                 Text(isDraw ? "무승부" : (didIWin ? "승리!🎉" : "패배"))
-                    .font(.title2.bold())
-                    .foregroundStyle(isDraw ? Color.primary : (didIWin ? Color.green : Color.red))
+                    .font(.system(.title2, design: .rounded).weight(.bold))
+                    .foregroundStyle(isDraw ? Color.primary : (didIWin ? KkodleTheme.ModeAccent.endless.accent : Color.red))
                 if wasForfeited {
                     Text("상대방의 연결이 끊겨서 게임이 종료됐어요")
                         .font(.subheadline)
@@ -286,15 +287,16 @@ private struct BattleResultOverlay: View {
                     .foregroundStyle(.secondary)
 
                 Button("돌아가기", action: onBack)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(Color.accentColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(KkodleTheme.ModeAccent.battle.accent)
+                    .clipShape(Capsule())
                     .padding(.top, 8)
             }
+            .buttonStyle(PressableButtonStyle())
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(40)
         }
     }

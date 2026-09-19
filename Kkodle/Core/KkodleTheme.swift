@@ -59,3 +59,14 @@ extension Color {
         })
     }
 }
+
+/// Scales a button down slightly while pressed, so the custom keyboard/submit
+/// buttons feel tactile instead of static — SwiftUI's plain button style
+/// gives no press feedback at all on its own.
+struct PressableButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.93 : 1)
+            .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+    }
+}

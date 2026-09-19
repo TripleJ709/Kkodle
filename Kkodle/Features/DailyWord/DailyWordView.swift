@@ -45,6 +45,7 @@ struct DailyWordView: View {
                 }
             }
         }
+        .background(KkodleTheme.background.ignoresSafeArea())
         .onChange(of: viewModel.status) { _, newStatus in
             guard newStatus != .inProgress else { return }
             if newStatus == .won {

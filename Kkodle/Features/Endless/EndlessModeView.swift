@@ -65,6 +65,7 @@ struct EndlessModeView: View {
                 )
             }
         }
+        .background(KkodleTheme.background.ignoresSafeArea())
         .onChange(of: viewModel.currentRound.status) { _, _ in
             viewModel.handleRoundChange()
         }
@@ -88,7 +89,7 @@ private struct WinCelebrationOverlay: View {
                     .foregroundStyle(.green)
             }
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(60)
         }
         .contentShape(Rectangle())
@@ -120,11 +121,11 @@ private struct RoundLossPromptOverlay: View {
                         .multilineTextAlignment(.center)
 
                     Button("하트 쓰고 한 번 더", action: onUseHeart)
-                        .font(.headline)
+                        .font(.system(.headline, design: .rounded).weight(.bold))
                         .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .frame(maxWidth: .infinity, minHeight: 48)
                         .background(Color.red)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .clipShape(Capsule())
                 } else {
                     Text("정답은 \"\(answerWord)\" 였어요")
                         .font(.body)
@@ -132,14 +133,15 @@ private struct RoundLossPromptOverlay: View {
                 }
 
                 Button(canUseHeart ? "여기서 그만하기" : "기록 확인하기", action: onGiveUp)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(canUseHeart ? Color.primary : Color.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .frame(maxWidth: .infinity, minHeight: 48)
                     .background(canUseHeart ? Color.gray.opacity(0.2) : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clipShape(Capsule())
             }
+            .buttonStyle(PressableButtonStyle())
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(40)
         }
     }
@@ -179,15 +181,16 @@ private struct EndlessResultOverlay: View {
                     .foregroundStyle(.secondary)
 
                 Button("돌아가기", action: onBack)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(Color.accentColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(KkodleTheme.ModeAccent.endless.accent)
+                    .clipShape(Capsule())
                     .padding(.top, 8)
             }
+            .buttonStyle(PressableButtonStyle())
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(40)
         }
     }

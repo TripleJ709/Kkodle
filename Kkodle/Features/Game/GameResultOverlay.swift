@@ -18,23 +18,27 @@ struct GameResultOverlay: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 12) {
-                Text(status == .won ? "정답입니다! 🎉" : "아쉬워요 😢")
-                    .font(.title2.bold())
+                Text(status == .won ? "🎉" : "😢")
+                    .font(.system(size: 44))
+
+                Text(status == .won ? "정답입니다!" : "아쉬워요")
+                    .font(.system(.title2, design: .rounded).weight(.bold))
 
                 Text(status == .won ? "잘 맞췄어요!" : "정답은 \"\(answerWord)\" 였어요")
                     .font(.body)
                     .foregroundStyle(.secondary)
 
                 Button("닫기", action: onDismiss)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(status == .won ? Color.green : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(status == .won ? KkodleTheme.ModeAccent.endless.accent : Color.gray)
+                    .clipShape(Capsule())
                     .padding(.top, 8)
             }
+            .buttonStyle(PressableButtonStyle())
             .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
             .padding(40)
         }
     }

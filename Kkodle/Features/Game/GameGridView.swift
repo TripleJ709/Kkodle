@@ -32,11 +32,12 @@ struct GameGridCellView: View {
 
     var body: some View {
         Text(cell.atom.map(String.init) ?? "")
-            .font(.system(size: 26, weight: .bold))
+            .font(.system(size: 26, weight: .bold, design: .rounded))
             .foregroundStyle(cell.hint == nil ? Color.primary : Color.white)
             .frame(width: size, height: size)
-            .background(RoundedRectangle(cornerRadius: 8).fill(backgroundColor))
-            .overlay(RoundedRectangle(cornerRadius: 8).stroke(borderColor, lineWidth: 2))
+            .background(RoundedRectangle(cornerRadius: 14).fill(backgroundColor))
+            .overlay(RoundedRectangle(cornerRadius: 14).stroke(borderColor, lineWidth: 2.5))
+            .animation(.spring(response: 0.25, dampingFraction: 0.6), value: cell.hint)
     }
 
     private var backgroundColor: Color {
