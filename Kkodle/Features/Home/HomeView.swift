@@ -99,6 +99,10 @@ struct HomeView: View {
                 .buttonStyle(.plain)
 
                 Spacer()
+
+                Link("개인정보 처리방침", destination: URL(string: "https://claude.ai/code/artifact/1ba0da93-2f4a-4b76-aaea-ba21c015421c")!)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             .padding()
             .background(KkodleTheme.background.ignoresSafeArea())
