@@ -12,6 +12,9 @@ struct DailyWordView: View {
     let progressStore: DailyWordProgressStore
     @State private var viewModel: GameViewModel
     @State private var showResult = true
+    /// 이번 플레이에서 보상을 받았는지 여부. 이미 끝난 기록을 복원한 경우에는 false라서
+    /// 재입장할 때마다 "획득" 문구가 다시 뜨지 않습니다.
+    @State private var earnedReward = false
 
     init(heartsStore: HeartsStore, progressStore: DailyWordProgressStore = DailyWordProgressStore()) {
         self.heartsStore = heartsStore
@@ -40,7 +43,11 @@ struct DailyWordView: View {
             }
 
             if viewModel.status != .inProgress && showResult {
-                GameResultOverlay(status: viewModel.status, answerWord: viewModel.answerWord) {
+                GameResultOverlay(
+                    status: viewModel.status,
+                    answerWord: viewModel.answerWord,
+                    rewardText: earnedReward ? "하트 추가권 +1 획득!" : nil
+                ) {
                     showResult = false
                 }
             }
@@ -50,6 +57,7 @@ struct DailyWordView: View {
             guard newStatus != .inProgress else { return }
             if newStatus == .won {
                 heartsStore.grantCoupon()
+                earnedReward = true
             }
             let guessWords = viewModel.submittedGuesses.map { HangulComposer.compose($0.atoms) }
             progressStore.save(answer: viewModel.answerWord, guesses: guessWords, won: newStatus == .won)
