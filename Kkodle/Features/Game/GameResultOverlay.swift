@@ -10,6 +10,8 @@ import SwiftUI
 struct GameResultOverlay: View {
     let status: GameStatus
     let answerWord: String
+    /// 정답 보상 안내 문구 (예: 오늘의 단어 하트 추가권). nil이면 표시하지 않습니다.
+    var rewardText: String? = nil
     let onDismiss: () -> Void
 
     var body: some View {
@@ -28,6 +30,15 @@ struct GameResultOverlay: View {
                     .font(.body)
                     .foregroundStyle(.secondary)
 
+                if let rewardText {
+                    Label(rewardText, systemImage: "heart.fill")
+                        .font(.system(.subheadline, design: .rounded).weight(.bold))
+                        .foregroundStyle(.red)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .background(Color.red.opacity(0.12), in: Capsule())
+                }
+
                 Button("닫기", action: onDismiss)
                     .font(.system(.headline, design: .rounded).weight(.bold))
                     .foregroundStyle(.white)
@@ -45,5 +56,5 @@ struct GameResultOverlay: View {
 }
 
 #Preview {
-    GameResultOverlay(status: .won, answerWord: "가방", onDismiss: {})
+    GameResultOverlay(status: .won, answerWord: "가방", rewardText: "하트 추가권 +1 획득!", onDismiss: {})
 }
